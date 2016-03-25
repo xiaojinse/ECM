@@ -30,6 +30,7 @@ ip link set veth101 up
 ovs-vsctl set port veth101 tag=501
 
 ip netns exec red ping -c 4 10.163.168.222
+ ip netns exec red tcpdump
 
 # on S02:
 
@@ -47,4 +48,5 @@ ip link set veth101 up
 ovs-vsctl set port veth101 tag=501
 
 ip netns exec red ping -c 4 10.163.168.221
+ip netns exec red tcpdump
 
