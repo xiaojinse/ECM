@@ -45,14 +45,14 @@ ovs-vsctl add-port mylabovs-gre gre0 -- set interface gre0 type=gre options:remo
 ip netns add red
 ip link add veth100 type veth peer name veth101
 ip link set veth100 netns red
-ip netns exec red ip addr add 10.163.168.221/27 dev veth100
+ip netns exec red ip addr add 10.163.168.201/27 dev veth100
 ip netns exec red ip link set veth100 up
 
 ovs-vsctl add-port mylabovs-gre veth101
 ip link set veth101 up
 ovs-vsctl set port veth101 tag=501
 
-ip netns exec red ping -c 4 10.163.168.222
+ip netns exec red ping -c 4 10.163.168.202
 ip netns exec red tcpdump
 
 # on S02:
@@ -63,14 +63,14 @@ ovs-vsctl add-port mylabovs-gre gre0 -- set interface gre0 type=gre options:remo
 ip netns add red
 ip link add veth100 type veth peer name veth101
 ip link set veth100 netns red
-ip netns exec red ip addr add 10.163.168.222/27 dev veth100
+ip netns exec red ip addr add 10.163.168.202/27 dev veth100
 ip netns exec red ip link set veth100 up
 
 ovs-vsctl add-port mylabovs-gre veth101
 ip link set veth101 up
 ovs-vsctl set port veth101 tag=501
 
-ip netns exec red ping -c 4 10.163.168.221
+ip netns exec red ping -c 4 10.163.168.201
 ip netns exec red tcpdump
 
 3. 连接ceebr3 到 GRE OVS。
